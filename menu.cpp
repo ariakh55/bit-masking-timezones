@@ -1,6 +1,19 @@
 #include "menu.h"
 #include "core.h"
 
+void Clear()
+{
+#if defined _WIN32
+    system("cls");
+    //clrscr(); // including header file : conio.h
+#elif defined (__LINUX__) || defined(__gnu_linux__) || defined(__linux__)
+    system("clear");
+    //std::cout<< u8"\033[2J\033[1;1H"; //Using ANSI Escape Sequences 
+#elif defined (__APPLE__)
+    system("clear");
+#endif
+}
+
 Menu* Menu::s_Instance = nullptr;
 
 void Menu::ShowMenu(){
@@ -30,9 +43,8 @@ bool Menu::ProcessMenuOptions() {
 		return false;
 	}
 
-	std::cout<<"\n\n";
+	Clear();
 	(*iter->second)();
-	std::cout<<"\n\n";
 	return true;
 }
 

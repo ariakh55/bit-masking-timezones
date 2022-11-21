@@ -4,49 +4,27 @@
 #include <string>
 #include <iostream>
 
+#define SEQ  1
+#define MAXMASK 16777216
+
 class Timezone{
 	private:
 		std::string m_Name;
 		std::string m_Abbreviation;
-		int m_Offset;
+		int id;
 
 	public:
-		Timezone(std::string name, std::string abbr, int offset) {
-			m_Name = name;
-			m_Abbreviation = abbr;
-			m_Offset = offset;
-		}
+		Timezone(std::string name, std::string abbr);
 
-		inline int GetOffset() {return m_Offset;}
 		inline std::string GetName() {return m_Name;}
 		inline std::string GetAbbr() {return m_Abbreviation;}
+		inline int GetId() {return id;}
 };
 
-std::vector<Timezone> timezones;
 
-void GetAllCities(){
-	
-	for(int i=0; i<timezones.size(); ++i){
-		std::cout<<timezones[i].GetName() << "\t" \
-		<< timezones[i].GetOffset() << std::endl;
-	}
-}
-
-void GetCities(){
-	int offset;
-	std::cout<<"Enter timezone offset: ";
-	std::cin>>offset;
-
-	for(int i=0; i<timezones.size(); ++i){
-		if( timezones[i].GetOffset() & offset){
-			std::cout<< timezones[i].GetName()<<std::endl;
-		}
-	}
-}
-
-void GetTimezones(){
-	
-	
-}
+void AddCity(std::string name, std::string abbr, int offset);
+void GetAllCities();
+void GetCities();
+void GetTimezones();
 
 #endif

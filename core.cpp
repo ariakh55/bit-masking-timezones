@@ -11,17 +11,20 @@ bool Core::RunApplication(){
 		"Show Cities"
 	};
 	Menu::GetInstance()->initApp("TimeZone", "v0.1", options);
+	
 	Menu::GetInstance()->
 	RegisterFunction("Show Cities", &GetAllCities);
 	Menu::GetInstance()->
 	RegisterFunction("Get cities by timezone", &GetCities);
+	Menu::GetInstance()->
+	RegisterFunction("Get timezone by city", &GetTimezones);
 
-	timezones.push_back(Timezone("Moscow", "MSK", 3));
-	timezones.push_back(Timezone("Paris", "PRS", 2));
-	timezones.push_back(Timezone("Amsterdam", "AMS", 2));
-	timezones.push_back(Timezone("NewYork", "NYC", -4));
-	timezones.push_back(Timezone("Tehran", "TEH", 4));
-	timezones.push_back(Timezone("Tokyo", "TKY", 9));
+	AddCity("Moscow", "MSK",3);
+	AddCity("Paris", "PRS", 2);
+	AddCity("Amsterdam", "AMS", 2);
+	AddCity("NewYork", "NYC", -4);
+	AddCity("Tehran", "TEH", 4);
+	AddCity("Tokyo", "TKY", 9);
 	return m_IsRunning = true;
 }
 
